@@ -1,6 +1,7 @@
 <template>
   <div>
-    <pre>{{ JSON.stringify(posts, null, 2) }}</pre>
+    <v-icon v-if="!posts">mdi-spin mdi-loading</v-icon>
+    <pre v-else>{{ JSON.stringify(posts, null, 2) }}</pre>
   </div>
 </template>
 
@@ -16,7 +17,7 @@ export default {
     return { posts: null };
   },
 
-  created() {
+  mounted() {
     axios({ method: "get", url: "/posts.json" }).then(({ data: posts }) => {
       this.posts = new Map(JSON.parse(JSON.stringify(posts)));
     });

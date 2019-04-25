@@ -1,6 +1,9 @@
 <template>
   <div>
-    <div v-if="post.html" v-html="post.html"></div>
+    <template v-if="post.html">
+      <h1>{{ post.title }}</h1>
+      <div v-html="post.html"></div>
+    </template>
     <v-icon v-else>mdi-spin mdi-loading</v-icon>
   </div>
 </template>
